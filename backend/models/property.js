@@ -23,13 +23,6 @@ const PropertySchema = new mongoose.Schema(
       type: String,
       default:
         "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=500&h=300&fit=crop",
-      validate: {
-        validator: function (v) {
-          // Basic URL validation
-          return /^https?:\/\/.+\.(jpg|jpeg|png|webp|gif)/.test(v) || v === "";
-        },
-        message: "Please provide a valid image URL",
-      },
     },
     description: {
       type: String,

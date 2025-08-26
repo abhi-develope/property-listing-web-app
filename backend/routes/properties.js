@@ -1,16 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const Property = require("../models/Property");
+const Property = require("../models/property");
 
 // Middleware for admin authentication
 const authenticateAdmin = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
-  return res.status(401).json({
-    success: false,
-    error: "No authorization header provided",
-  });
+    return res.status(401).json({
+      success: false,
+      error: "No authorization header provided",
+    });
+  }
 
   const token = authHeader.split(" ")[1]; // Bearer <token>
 
@@ -25,8 +26,6 @@ const authenticateAdmin = (req, res, next) => {
 };
 
 // @route   GET /api/properties
-// @desc    Get all active properties
-// @access  Public
 router.get("/", async (req, res) => {
   try {
     // Query parameters for filtering and pagination
@@ -181,6 +180,5 @@ router.post("/", authenticateAdmin, async (req, res) => {
     });
   }
 });
-}
 
 module.exports = router;

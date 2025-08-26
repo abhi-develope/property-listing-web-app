@@ -19,22 +19,6 @@ app.use(express.json());
 // Routes
 app.use("/api/properties", propertyRoutes);
 
-// Basic endpoints
-app.get("/", (req, res) => {
-  res.json({
-    message: "Property Listing API",
-    endpoints: {
-      "GET /api/properties": "Get all properties",
-      "GET /api/properties/:id": "Get single property",
-      "POST /api/properties": "Create property (Admin only)",
-    },
-  });
-});
-
-app.get("/health", (req, res) => {
-  res.json({ status: "OK", timestamp: new Date().toISOString() });
-});
-
 // Error handling
 app.use((err, req, res, next) => {
   console.error(err.message);
